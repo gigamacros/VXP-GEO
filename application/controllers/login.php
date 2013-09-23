@@ -2,6 +2,7 @@
 
 class Login extends CI_Controller
 {
+    public $cat='nada';
     //esta funcion siempre va
     public function __construct() {
         parent::__construct();
@@ -21,17 +22,61 @@ class Login extends CI_Controller
     public function validar() {
         //aca aplicamos reglas sobre los campos que nos interesan
         $this->form_validation->set_rules('usuario', 'Usuario', 'required');
-        $this->form_validation->set_rules('pass', 'Contraseña', 'required');
+        $this->form_validation->set_rules('pass', 'Contraseña', 'required');       
+        
+        
         $this->form_validation->set_message('required', 'El campo %s es obligatorio');
-
+        
         if ($this->form_validation->run() == FALSE)
         {
             $this->index();
         }
         else
+        {   
+            $this->form_validation->set_rules('usuario','Usuario','trim|callback_valid_user['.$this->input->post('pass').']');
+            $this->form_validation->set_message('valid_user', 'El usuario o la contraseña son incorrectos');
+                     
+            if ($this->form_validation->run() == FALSE)
+            {
+                $this->index();
+            }
+            else
+            {
+                $data = array('titulo'=> 'VXP-GEO');     
+                switch ($this->cat) {
+                    case 'Administrador':
+                        $this->load->view('welcome_admin_view',$data);
+                        break;
+                    case 'Jefe de Campo':
+                        $this->load->view('welcome_jcampo_view',$data);
+                        break;
+                    case 'Supervisor':
+                        $this->load->view('welcome_supervisor_view',$data);
+                        break;
+                    case 'Encuestador':
+                        $this->load->view('welcome_encuestador_view',$data);
+                        break;
+                    default:
+                        echo $this->cat;
+                        break;
+                }
+            }
+        }
+    }
+    
+    function valid_user ($usuario, $pass) {
+        $query = $this->db->query('SELECT cat_usr FROM usuario WHERE nom_usr="'.$usuario.'" and pass_usr="'.$pass.'"');
+        
+        if ($query->num_rows() > 0)
         {
-            //ademas de las reglas debe ser un usuario dentro de la base de datos
-            $this->load->view('formsuccess');
+            foreach ($query->result() as $row)
+            {
+                $this->cat = $row->cat_usr;
+            }
+            return TRUE;
+        }
+        else {
+            return FALSE;
         }
     }
 }
