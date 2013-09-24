@@ -38,12 +38,14 @@
 |
 */
 
-$route['default_controller'] = "login";
-$route['404_override'] = '';
+/*$route['default_controller'] = "login";
+$route['404_override'] = '';*/
+//$route['login/(:any)'] = 'login/view/$1';
+$route['login/validar'] = 'login/validar';
+$route['login'] = 'login';
 
-/*$route['default_controller'] = 'pages/view';
-$route['(:any)'] = 'pages/view/$1';*/
-
+$route['(:any)'] = 'pages/view/$1';
+$route['default_controller'] = 'pages/view';
 
 /* End of file routes.php */
 /* Location: ./application/config/routes.php */

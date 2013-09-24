@@ -1,7 +1,8 @@
 <!DOCTYPE HTML/>
 <html>
     <head>
-        <title><?php echo $title ?> - VXP-GEO</title>
+        <meta charset="utf-8">
+        <title><?php echo $titulo ?> - VXP-GEO</title>
     </head>
     <body>
         <h1>VXP-GEO</h1>

@@ -1,30 +1,32 @@
 <?php
-
-class Login extends CI_Controller
-{
+class Login extends CI_Controller{
     public $cat='nada';
-    //esta funcion siempre va
-    public function __construct() {
+    
+    public function __construct() {//esta funcion siempre va
         parent::__construct();
-        //ponemos aca los "helper" y "library" para que sean accesibles por todas las funciones
+        //ponemos aca los "helper", "library" y "model" para que sean accesibles por todas las funciones
         $this->load->helper('form');
         $this->load->helper('url');
+        
         $this->load->library('form_validation');
+        
+        $this->load->model('consultas_model');
     }
     
-    //esta funcion siempre va
-    public function index() {
+    public function index() {//esta funcion siempre va
         //podemos pasarle a la vista el nombre de la pagina como una variable
-        $data = array('titulo'=> 'Ingreso VXP-GEO'); 
-        $this->load->view('login_view',$data);
+        $data['titulo'] ='Ingreso VXP-GEO';
+        
+        $this->load->view('templates/header', $data);
+        $this->load->view('login/index.php',$data);
+        $this->load->view('templates/footer');
     }
     
     public function validar() {
         //aca aplicamos reglas sobre los campos que nos interesan
         $this->form_validation->set_rules('usuario', 'Usuario', 'required');
         $this->form_validation->set_rules('pass', 'Contraseña', 'required');       
-        
-        
+               
         $this->form_validation->set_message('required', 'El campo %s es obligatorio');
         
         if ($this->form_validation->run() == FALSE)
@@ -42,19 +44,32 @@ class Login extends CI_Controller
             }
             else
             {
-                $data = array('titulo'=> 'VXP-GEO');     
+                $data['titulo']='VXP-GEO';     
                 switch ($this->cat) {
-                    case 'Administrador':
-                        $this->load->view('welcome_admin_view',$data);
+                    case 1://'Superadministrador':
+                        $this->load->view('templates/header', $data);
+                        $this->load->view('administrador/welcome_admin_view',$data);
+                        $this->load->view('templates/footer');
                         break;
-                    case 'Jefe de Campo':
-                        $this->load->view('welcome_jcampo_view',$data);
+                    case 2://'Administrador':
+                        $this->load->view('templates/header', $data);
+                        $this->load->view('administrador/welcome_admin_view',$data);
+                        $this->load->view('templates/footer');
                         break;
-                    case 'Supervisor':
-                        $this->load->view('welcome_supervisor_view',$data);
+                    case 3://'Supervisor':
+                        $this->load->view('templates/header', $data);
+                        $this->load->view('supervisor/welcome_supervisor_view',$data);
+                        $this->load->view('templates/footer');
                         break;
-                    case 'Encuestador':
-                        $this->load->view('welcome_encuestador_view',$data);
+                    case 4://'Jefe de Campo':
+                        $this->load->view('templates/header', $data);
+                        $this->load->view('jefecampo/welcome_jcampo_view',$data);
+                        $this->load->view('templates/footer');
+                        break;
+                    case 5://'Encuestador':
+                        $this->load->view('templates/header', $data);
+                        $this->load->view('encuestador/welcome_encuestador_view',$data);
+                        $this->load->view('templates/footer');
                         break;
                     default:
                         echo $this->cat;
@@ -65,18 +80,14 @@ class Login extends CI_Controller
     }
     
     function valid_user ($usuario, $pass) {
-        $query = $this->db->query('SELECT cat_usr FROM usuario WHERE nom_usr="'.$usuario.'" and pass_usr="'.$pass.'"');
-        
-        if ($query->num_rows() > 0)
+        $datos['credenciales']=  $this->consultas_model->get_credenciales($usuario, $pass);
+        if (empty($datos['credenciales']))
         {
-            foreach ($query->result() as $row)
-            {
-                $this->cat = $row->cat_usr;
-            }
-            return TRUE;
+            return FALSE;
         }
         else {
-            return FALSE;
+            $this->cat = $datos['credenciales']['id_cat'];
+            return TRUE;
         }
     }
 }
