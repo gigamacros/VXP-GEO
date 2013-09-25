@@ -44,6 +44,9 @@ $route['404_override'] = '';*/
 $route['login/validar'] = 'login/validar';
 $route['login'] = 'login';
 
+$route['contacts'] = 'contacts';
+$route['contacts/index'] = 'contacts/index';
+
 $route['usuarios/validar_nuevo'] = 'usuarios/validar_nuevo';
 $route['usuarios'] = 'usuarios';
 

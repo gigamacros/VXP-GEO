@@ -34,25 +34,23 @@ private $table = array();
 */
     private $class_path = null;
     
-    public function __construct($param = array())
-{
-     $this->ci =& get_instance();
+    public function __construct($param = array()){
+        $this->ci =& get_instance();
 
-$this->ci->load->library( "session" );
-$this->ci->load->helper( array("url", "form", "html", "listview") );
+        $this->ci->load->library( "session" );
+        $this->ci->load->helper( array("url", "form", "html", "listview") );
 
         $this->initialize($param);
     }
 
-    function filter($table, $limit, $offset)
-{
-lvw_db_filter();
+    function filter($table, $limit, $offset){
+        lvw_db_filter();
 
-$data['query'] = $this->ci->db->select("SQL_CALC_FOUND_ROWS *", false)->from($table)->limit($limit, $offset)->get();	
-$data['total_rows'] = $this->ci->db->query("SELECT FOUND_ROWS() total_rows")->row()->total_rows;
+        $data['query'] = $this->ci->db->select("SQL_CALC_FOUND_ROWS *", false)->from($table)->limit($limit, $offset)->get();	
+        $data['total_rows'] = $this->ci->db->query("SELECT FOUND_ROWS() total_rows")->row()->total_rows;
 
-return $data;
-}
+        return $data;
+    }
 
     public function initialize($param = array())
 {
