@@ -44,6 +44,9 @@ $route['404_override'] = '';*/
 $route['login/validar'] = 'login/validar';
 $route['login'] = 'login';
 
+$route['usuarios/validar_nuevo'] = 'usuarios/validar_nuevo';
+$route['usuarios'] = 'usuarios';
+
 $route['(:any)'] = 'pages/view/$1';
 $route['default_controller'] = 'pages/view';
 
