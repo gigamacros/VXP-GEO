@@ -3,96 +3,96 @@
 $config['theme'] = "default";
 
 $config['core'] = array(
-'table' => array(
-# daftar field yang akan ditampilkan dalam tabel
-'fields' => array(),
+    'table' => array(
+    # lista de campos que se muestran en la tabla
+    'fields' => array(),
 
-# daftar field yang akan disembunyikan
-'hidden_fields' => array(),
+    # lista de campos que se pueden ocultar
+    'hidden_fields' => array(),
 
-# nama field yang bertindak sebagai primary key
-'p_key' => null,
+    # nombre de campo que actúa como clave principal
+    'p_key' => null,
 
-# atribut HTML Table (class, id, style dll)
-'attr' => null,
+    # atribut HTML Table (class, id, style dll)
+    'attr' => null,
 
-# opsi untuk mengaktifkan/menonaktifkan mulsi select
-# yaitu memungkinkan pengguna memilih beberapa baris record
-# yang nanti mungkin akan dihapus secara bersamaan
-'multi_select' => array(
-'active' => true,
-'attr' => array('style' => 'width:10px;'),
-'form' => array(
-'action' => "",
-"attr" => array('class' => "formdata"),
-"checkbox" => array(
-'check_all' => array('class' => 'checkall', 'name' => 'check_all', 'value' => ""),
-'check_item' => array('class' => 'check_item', 'name' => 'check_item', 'value' => "")
-)
-)
-),
+    # opción de activar / desactivar la selección múltiple, 
+    # que permite al usuario seleccionar filas de múltiples registros
+    # que más tarde se puede eliminar del mismo
+    'multi_select' => array(
+        'active' => true,
+        'attr' => array('style' => 'width:10px;'),
+        'form' => array(
+            'action' => "",
+            "attr" => array('class' => "formdata"),
+            "checkbox" => array(
+                'check_all' => array('class' => 'checkall', 'name' => 'check_all', 'value' => ""),
+                'check_item' => array('class' => 'check_item', 'name' => 'check_item', 'value' => "")
+            )
+        )
+    ),
 
-# opsi untuk mengaktifkan/menonaktifkan penomeran otomatis pada baris tabel
-'numbering' => array(
-'active' => true,
-'label' => 'No',
-'attr' => array('style' => 'width:10px;')
-),
+    # opción de activar / desactivar numeración automática en una fila de la tabla
+    'numbering' => array(
+    'active' => true,
+    'label' => 'No',
+    'attr' => array('style' => 'width:10px;')
+    ),
 
-# metode pengurutan
-# by: nama field yang akan digunakan untuk pengurutan
-# order: ASC|DESC
-'sort' => array('by' => null, 'order' => 'desc'),
+    # método de clasificación
+    # por: nombre del campo que se utilizará para ordenar
+    # orden: ASC|DESC
+    'sort' => array('by' => null, 'order' => 'desc'),
 
-# Aksi tambahan untuk tabel (Edit, Delete)
-'action'	=> array(
-'attr' => array('style' => 'width:40px;'),
-'position' => 'first', #last | first | none
-'merge' => true,
-'label' => 'Action',
-'links'	=> array(
-'edit' => array('link_point' => 'href', 'attr' => array('title' => 'Edit')),
-     'delete' => array('link_point' => 'href', 'attr' => array('title' => 'Delete', 'onclick' => "javascript:return confirm('Anda yakin akan menghapus data ini ?')"))
-)
-),
+    # Acción adicional a la tabla (Edit, Delete)
+    'action'	=> array(
+        'attr' => array('style' => 'width:40px;'),
+        'position' => 'first', #last | first | none
+        'merge' => true,
+        'label' => 'Action',
+        'links'	=> array(
+            'edit' => array('link_point' => 'href', 'attr' => array('title' => 'Editar')),
+            'delete' => array('link_point' => 'href', 'attr' => array('title' => 'Eliminar', 'onclick' => "javascript:return confirm('¿Estás seguro de que quiere eliminar estos datos?')"))
+        )
+    ),
 
-# jumlah baris yang akan ditampilkan dalam satu halaman
-'per_page' => 20,
+    # el número de filas que se mostrarán en una sola página
+    'per_page' => 20,
 
-# jumlah record keseluruhan
-'total_rows' => 0,
+    # el número total de registros
+    'total_rows' => 0,
 
-# mysql Query yang nanti akan ditampilkan ke menjadi baris tabel
-'query' => null,
+    # mysql query que más tarde se demostró que una fila de tabla
+    'query' => null,
 
-# Nama controller
-# jika dikosongkan akan dicari otomatis
-'class_path' => "",
+    # Nombre del controlador
+    # si se deja en blanco se buscará automáticamente
+    'class_path' => "",
 
-# opsi jika tabel tidak akan dibuatkan tabel header <th>
-'no_header' => false,
+    # opción si la tabla no se creará la cabecera de la tabla <th>
+    'no_header' => false,
 
-# alamat Url tabel ditampilkan
-'base_url' => '',
+    # tabla de direcciones URL que aparece
+    'base_url' => '',
 
-# alamat view
-'view' => '_listview/_container'
-),
-'show_record' => array(
-'options' => array(20 => "20", 50 => "50", 100 => "100"),
-'total_rows' => 0
-),
-'pagination' => array(
-'base_url' => "",
-'total_rows' => 0,
-'per_page' => 20,
-'uri_segment' => 3
-),
-'search_form' => array(
-'filters' => null,
-'base_url' => "",
-"data" => array()	
-)
+    # dirección view
+    'view' => '_listview/_container'
+    ),
+    'show_record' => array(
+        'options' => array(20 => "20", 50 => "50", 100 => "100"),
+        'total_rows' => 0
+    ),
+    'pagination' => array(
+        'base_url' => "",
+        'total_rows' => 0,
+        'per_page' => 20,
+        'uri_segment' => 3
+    ),
+    'search_form' => array(
+        'filters' => null,
+        'base_url' => "",
+        "data" => array()	
+    )
 );
 
 /* End of file listview_core.php */

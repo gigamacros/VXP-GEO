@@ -27,7 +27,7 @@ $ci->load->library("session");
 
 $method = $ci->router->method;
 if ( ($msg = $ci->session->userdata("{$method}_message")) ) {
-// hapus pesan dalam session
+// eliminar los mensajes en sesión
 $ci->session->unset_userdata("{$method}_message");
 return $msg;
 }
@@ -82,9 +82,9 @@ function set_format($type, $attr, $data, $p_key = null)
 $data_formate = "";
 
 switch ($type) {
-# jika format dipilih adalah image
+# si se selecciona el formato de imagen
 case 'image':
-# gabungkan src dengan nilai data
+# combinar src con valores de datos
 $attr['src'] = $attr['src'] . "/{$data}";
 $data_formated = img($attr);
 break;

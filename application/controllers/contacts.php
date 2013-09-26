@@ -8,33 +8,33 @@ $this->load->library('listview');
 $data = $this->listview->filter('usuarios', $limit, $offset);
 
 $config['table'] = array(
-'total_rows' => $data['total_rows'],
-'per_page' => $limit,
-'query' => $data['query'],
-'numbering' => array('active' => false),
-'p_key' => 'contact_id',
-'action' => array('position' => 'last', 'merge' => false),
-'fields' => array(
-'nom_usr' => 'Nama Lengkap',
-'email_usr' => 'Email',
-'dir_usr' => 'Alamat tinggal',
-/*'tel_usr' => array(
-'format' => array(
-'form' => array(
-'type' => 'form_input'
-)
-)
-),
-'category_id' => array(
-'label' => 'Kategori',
-'format' => array(
-'form' => array(
-'type' => 'form_dropdown',
-'options' => $this->get_categories()
-)
-)
-)*/
-)
+    'total_rows' => $data['total_rows'],
+    'per_page' => $limit,
+    'query' => $data['query'],
+    'numbering' => array('active' => false),
+    'p_key' => 'id_usr',
+    'action' => array('position' => 'last', 'merge' => false),
+    'fields' => array(
+    'nom_usr' => 'Nombre',
+    'email_usr' => 'Email',
+    'dir_usr' => 'Direccion',
+    /*'tel_usr' => array(
+    'format' => array(
+    'form' => array(
+    'type' => 'form_input'
+    )
+    )
+    ),
+    'category_id' => array(
+    'label' => 'Kategori',
+    'format' => array(
+    'form' => array(
+    'type' => 'form_dropdown',
+    'options' => $this->get_categories()
+    )
+    )
+    )*/
+    )
 );
 
 $this->listview->initialize($config);
