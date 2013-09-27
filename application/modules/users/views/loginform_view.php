@@ -1,4 +1,9 @@
 <h1>Login</h1>
+
+<?php
+echo validation_errors("<p style='color: red;'>","</p>");
+?>
+
 <p>Complete los datos y presione 'Ingresar'</p>
 
 <?php
